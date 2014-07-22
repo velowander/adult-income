@@ -1,0 +1,51 @@
+Standard of living
+========================================================
+
+![Screenshot](predictor_screenshot.png)
+
+Thinking of moving to the USA? Changing professions?
+========================================================
+
+If you live in the USA and are thinking about changing professions, or you are considering a move to the USA and would like to know the standard of living to expect, then the Standard of Living Predictor application is for you.
+
+Simply select the relevant parameters such as:
+
+- Education level
+- Country of Origin
+- Age
+- Occupation
+
+How does it work? 1/2
+========================================================
+
+- The application hosts R's __caret__ add-on software classification system and random forest base algorithm.
+- The author previously trained it from the Census Income data at [http://archive.ics.uci.edu/ml/datasets/Adult](#[http://archive.ics.uci.edu/ml/datasets/Adult]).
+- The training data supplied individual income in two categories, greater or lower than USD 50,000 per year.
+- The author pre-computed the model and saved it as a file (it takes several minutes to calculate).
+
+How does it work? 2/2
+========================================================
+
+- The author used the following code for training:
+
+`
+modFit <- train(income ~ ., data = adult.sample, method = "rf", trControl = trainControl(method='cv'))
+`
+- The data has many other characteristics about the individual; the caret system learns the relationship between the _predictors_ (these characteristics) and the _outcome_ (standard of living).
+- The application then uses the supplied information about a real or hypothetic individual to predict standard of living.
+
+Sample prediction
+========================================================
+
+
+
+```r
+modFit <- readRDS("modFit.rds") #load the precomputed model from file
+userData <- data.frame(33, 16, " Prof-specialty", " Black", " Female", 46, " Germany")
+names(userData) <- c("age", "education-num", "occupation", "race", "sex", "hours per week", "nativeCountry")
+answer[predict(modFit, userData)]
+```
+
+```
+[1] "Comfortable USA lifestyle, over USD 50K/year"
+```
