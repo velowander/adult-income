@@ -1,11 +1,8 @@
-adult <- read.csv("adult.data", header=FALSE)
-adult.names <- c("age", "workclass", "fnlwgt", "education", "education-num", "maritalStatus", "occupation", "relationship",
-                 "race", "sex", "capitalGain", "capitalLoss", "hours per week", "nativeCountry", "income")
-names(adult) <- adult.names
-nativeCountry <- unique(adult$nativeCountry)
-occupation <- unique(adult$occupation)
-race <- unique(adult$race)
-rm(adult, adult.names)
+#To improve performance, the lists of items for UI controls is cached rather than reading
+#the original dataset and using unique().
+nativeCountry <- readRDS("nativeCountry.rds")
+occupation <- readRDS("occupation.rds")
+race <- readRDS("race.rds")
 
 shinyUI(pageWithSidebar(
   headerPanel("USA Standard of Living Predictor"),
