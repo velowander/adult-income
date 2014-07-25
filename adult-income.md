@@ -34,16 +34,16 @@ modFit <- train(income ~ ., data = adult.sample, method = "rf", trControl = trai
 - The data has many other characteristics about the individual; the caret system learns the relationship between the _predictors_ (these characteristics) and the _outcome_ (standard of living).
 - The application then uses the supplied information about a real or hypothetic individual to predict standard of living.
 
-Sample prediction
+Sample prediction (command line)
 ========================================================
 
 
 
 ```r
 modFit <- readRDS("modFit.rds") #load the precomputed model from file
-userData <- data.frame(33, 16, " Prof-specialty", " Black", " Female", 46, " Germany")
-names(userData) <- c("age", "education-num", "occupation", "race", "sex", "hours per week", "nativeCountry")
-answer[predict(modFit, userData)]
+userData <- data.frame(32, 18, " Married-spouse-absent", " Prof-specialty", " Black", " Female", 44, " Italy")
+names(userData) <- c("age", "education-num", "maritalStatus", "occupation", "race", "sex", "hoursPerWeek", "countryOrigin")
+      answer[predict(modFit, userData)]
 ```
 
 ```
