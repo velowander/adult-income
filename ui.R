@@ -3,6 +3,7 @@
 nativeCountry <- readRDS("nativeCountry.rds")
 occupation <- readRDS("occupation.rds")
 race <- readRDS("race.rds")
+maritalStatus <- readRDS("maritalStatus.rds")
 
 shinyUI(pageWithSidebar(
   headerPanel("USA Standard of Living Predictor"),
@@ -11,6 +12,7 @@ shinyUI(pageWithSidebar(
     selectInput("selectCountry", "Country of Origin", choices = nativeCountry ),
     selectInput("selectOcc", "Occupation", choices = occupation ),
     selectInput("selectRace", "Race", choices = race ),
+    selectInput("selectMarital", "Marital Status", choices = maritalStatus),
     sliderInput("slideAge", "Age (years)", 18, 80, 30),
     sliderInput("slideSchooling", "Years of formal schooling", 0, 22, 12),
     radioButtons("radioSex", "Choose gender:", list(" Female", " Male")),
@@ -27,6 +29,8 @@ shinyUI(pageWithSidebar(
     textOutput('textOccupation'),
     h5('Race'),
     textOutput('textRace'),
+    h5('Marital Status'),
+    textOutput('textMarital'),
     h5('Age'),
     textOutput('textAge'),
     h5('Years of schooling'),

@@ -8,10 +8,10 @@ set.seed(300)
 adult <- read.csv("adult.data", header=FALSE)
 #adult.test <- read.csv("~/R/ddp/adult.test", header=FALSE)
 adult.names <- c("age", "workclass", "fnlwgt", "education", "education-num", "maritalStatus", "occupation", "relationship",
-                 "race", "sex", "capitalGain", "capitalLoss", "hours per week", "nativeCountry", "income")
+                 "race", "sex", "capitalGain", "capitalLoss", "hoursPerWeek", "countryOrigin", "income")
 names(adult) <- adult.names
 adult$education <- NULL
-adult$maritalStatus <- NULL
+#adult$maritalStatus <- NULL
 adult$fnlwgt <- NULL
 adult$capitalGain <- NULL
 adult$capitalLoss <- NULL
